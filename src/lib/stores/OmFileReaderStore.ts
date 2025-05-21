@@ -5,8 +5,7 @@ import {
 	type OmFileReaderBackend,
 	type Range,
 	OmDataType,
-	CompressionType,
-	S3Backend
+	CompressionType
 } from '@openmeteo/file-reader';
 import { writable } from 'svelte/store';
 
@@ -78,13 +77,13 @@ const OmFileReaderStore = {
 
 		// Check if it's an S3 URL
 		if (url.startsWith('s3://')) {
-			console.log('Creating S3Backend.');
-			return new S3Backend({
-				region: 'us-west-2',
-				bucket: 'openmeteo',
-				key: 'data_spatial/dwd_icon_d2/2025/04/26/0000Z/temperature_2m.om',
-				cacheEnabled: true
-			});
+			console.error('S3 not currently supported.');
+			// return new S3Backend({
+			// 	region: 'us-west-2',
+			// 	bucket: 'openmeteo',
+			// 	key: 'data_spatial/dwd_icon_d2/2025/04/26/0000Z/temperature_2m.om',
+			// 	cacheEnabled: true
+			// });
 		}
 
 		// For HTTP or HTTPS URLs, use MemoryHttpBackend
